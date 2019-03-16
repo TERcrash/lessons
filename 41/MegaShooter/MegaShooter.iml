@@ -8,6 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="core" level="project" />
-    <orderEntry type="library" name="JBox2D-2.0.1-b251-Library" level="project" />
+    <orderEntry type="library" name="box2d_processing" level="project" />
   </component>
 </module>

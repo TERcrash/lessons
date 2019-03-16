@@ -1,11 +1,14 @@
 package com.company;
 
 import processing.core.PApplet;
+import shiffman.box2d.Box2DProcessing;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 public class Main extends PApplet {
+    Box2DProcessing box2D;
+
     World world;
     HashMap<java.lang.Character, Boolean> keys = new HashMap<>();
 
