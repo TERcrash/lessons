@@ -16,6 +16,7 @@ public class Main extends PApplet {
     String gameOver = "GAMEOVER";
     String screen = game;
 
+
     public static void main(String[] args) {
         PApplet.main(Main.class);
     }
@@ -26,8 +27,13 @@ public class Main extends PApplet {
     }
 
     public void setup() {
+        box2D = new Box2DProcessing(this);
+
+        box2D.createWorld();
+        box2D.listenForCollisions();
+
         try {
-            world = new World(this);
+            world = new World(this, box2D);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,11 +64,17 @@ public class Main extends PApplet {
         text("YOU DIED", width / 3, height / 4);
         textSize(30);
         text("Press F to pay respects", width / 3, height / 2);
+
+        if (isKeyPressed('f')) {
+            println("Страна гордится тобой");
+            restart();
+        }
     }
 
     void restart() {
+
         try {
-            world = new World(this);
+            world = new World(this, box2D);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,10 +93,6 @@ public class Main extends PApplet {
         }
         if (isKeyPressed(' ')) {
             world.killerMLG.jump();
-        }
-        if (isKeyPressed('f')) {
-            println("Страна гордится тобой");
-            restart();
         }
     }
 

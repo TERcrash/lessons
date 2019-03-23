@@ -2,6 +2,7 @@ package com.company;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import shiffman.box2d.Box2DProcessing;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,10 +33,10 @@ public class World {
 
     int time = 0;
 
-    World(PApplet p) throws IOException {
+    World(PApplet p,Box2DProcessing box2D) throws IOException {
         parent = p;
         parent.noStroke();
-        this.killerMLG = new KillerMLG(500, 600, new String[]{"стояние.png", "движение.png"}, parent);
+        this.killerMLG = new KillerMLG(500, 600, new String[]{"стояние.png", "движение.png"}, parent,box2D);
         this.healthBar = new HealthBar(parent);
         this.bots = new ArrayList<>();
         this.characters = new ArrayList<>();
@@ -52,7 +53,7 @@ public class World {
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid.get(i).length(); j++) {
                 int n = java.lang.Character.getNumericValue(grid.get(i).charAt(j));
-                Tile tile = new Tile(j * Tile.size, i * Tile.size, tiles[n], parent);
+                Tile tile = new Tile(j * Tile.size, i * Tile.size, tiles[n], parent,box2D);
                 tileGrid[i][j] = tile;
                 if (n == 1) {
                     grounds.add(tile);
@@ -81,7 +82,7 @@ public class World {
             }
         }
 
-        applyCollision();
+        //applyCollision();
 
         killerMLG.draw();
         killerMLG.shoot();
